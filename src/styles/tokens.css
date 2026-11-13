@@ -1,0 +1,72 @@
+/* Token thị giác — mục 5 của đặc tả. Mọi màu, chữ, chuyển động lấy từ đây. */
+:root {
+  /* 5.1 Màu */
+  --foam: #F2F7FA;     /* Nền mặt nước, chữ trên nền tối */
+  --shallow: #BFE3F5;  /* Chuyển tiếp mặt nước */
+  --ocean: #1E6BFF;    /* Màu chủ đạo: nút, liên kết */
+  --mid: #0B3A75;      /* Nền tầng giữa */
+  --deep: #04142B;     /* Nền tầng sâu và đáy */
+  --light: #5CE1E6;    /* Tia sáng, viền focus trên nền tối */
+  --coral: #FF6B4A;    /* Điểm nóng — tối đa 2 chỗ mỗi màn */
+
+  /* Biến thể để đạt tương phản (đo ở dev/font-test.html). Cùng sắc độ với --ocean, chỉ tối hơn.
+     --ocean gốc chỉ đạt 4,23:1 trên --foam nên không dùng cho chữ thường trên nền sáng. */
+  --ocean-ink: #1959D4;       /* liên kết và nền nút trên nền sáng: 5,69:1 với foam, 4,54:1 với shallow */
+  --ocean-ink-hover: #164DB8; /* hover của nút trên nền sáng */
+
+  /* Quy tắc dùng màu (giữ tương phản):
+     - Nền sáng (foam, shallow): chữ --deep/--mid, liên kết và nút --ocean-ink.
+     - Nền tối (mid, deep): chữ --foam/--shallow, liên kết --light. Nút giữ --ocean
+       với chữ đậm ≥ 19px (chữ lớn WCAG: 4,23 ≥ 3:1; viền nút so với --deep 4,04 ≥ 3:1).
+     - --coral không bao giờ làm màu chữ trên nền sáng (2,61:1). Chỉ làm mảng màu có chữ --deep
+       bên trên (6,54:1) hoặc chữ lớn trên nền tối. */
+
+  /* Độ sâu cuộn 0 → 1 (JS cập nhật ở bước 3; mặc định 0 = mặt nước) */
+  --depth: 0;
+
+  /* 5.2 Chữ */
+  --font-display: 'Unbounded', 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-display-alt: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  /* Thang cỡ chữ (fluid, 360 → 1920 px) */
+  --text-xs: 0.8125rem;                                   /* 13px nhãn mono */
+  --text-sm: 0.9375rem;                                   /* 15px */
+  --text-base: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);   /* 16 → 18px */
+  --text-lg: clamp(1.25rem, 1.15rem + 0.45vw, 1.625rem);
+  --text-xl: clamp(1.75rem, 1.4rem + 1.5vw, 3rem);
+  --text-2xl: clamp(2.5rem, 1.6rem + 4vw, 5.5rem);
+  --text-hero: clamp(3rem, 1rem + 9vw, 11rem);            /* Tên ở Hero */
+
+  /* Line-height tiêu đề: đủ chỗ cho dấu chồng (ẵ, ỗ…). Đo ở dev/font-test.html:
+     Unbounded cần 1.24 (wght 200–400), 1.33 (700), 1.40 (900) nếu khung overflow:hidden.
+     Dùng 1.25 + đệm --display-clip-pad cho mọi khung mặt nạ (hiệu ứng chữ trồi lên). */
+  --leading-display: 1.25;
+  --display-clip-pad: 0.12em;
+  --leading-body: 1.6;
+
+  /* Khoảng cách theo bội số 4 px */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 3rem);
+
+  /* 6. Thông số chuyển động */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 120ms;     /* hover, nhấn */
+  --dur-base: 240ms;     /* chuyển trạng thái */
+  --dur-slow: 320ms;
+
+  /* Chiều cao một màn hình. Khi chạy dev, ?shot=900 khoá giá trị này để chụp nguyên trang. */
+  --screen-h: 100svh;
+
+  /* Vùng chạm tối thiểu */
+  --tap: 44px;
+}

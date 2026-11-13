@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kiểm tra font tiêu đề</title>
+    <style>
+      .wrap { padding: var(--space-8) var(--gutter); max-width: 1920px; margin: 0 auto; }
+      .label { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--mid); letter-spacing: .02em; margin: var(--space-8) 0 var(--space-2); }
+      /* Hộp có overflow: hidden và line-height token: nếu dấu bị cắt, sẽ thấy ngay */
+      .specimen {
+        font-size: clamp(3rem, 1rem + 7vw, 9rem);
+        line-height: var(--leading-display);
+        overflow: hidden;
+        padding-top: var(--display-clip-pad);
+        outline: 1px dashed var(--ocean);
+        margin: 0;
+        overflow-wrap: anywhere;
+      }
+      .unb { font-family: 'Unbounded', monospace; }
+      .bri { font-family: 'Bricolage Grotesque', monospace; }
+      .en { font-family: 'Unbounded', monospace; font-size: var(--text-2xl); line-height: var(--leading-display); margin: 0; outline: 1px dashed var(--ocean); }
+      table { border-collapse: collapse; font-family: var(--font-mono); font-size: var(--text-xs); margin-top: var(--space-4); }
+      th, td { border: 1px solid var(--shallow); padding: var(--space-1) var(--space-3); text-align: left; }
+      .ok { color: #0A6B3B; font-weight: 700; }
+      .bad { color: #B3261E; font-weight: 700; }
+      .swatch { display: inline-block; width: 1em; height: 1em; vertical-align: -0.15em; border: 1px solid #0003; }
+      pre { font-family: var(--font-mono); font-size: var(--text-xs); white-space: pre-wrap; }
+      p.body { font-family: var(--font-body); max-width: 60ch; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1 style="font-size: var(--text-xl)">Kiểm tra dấu tiếng Việt — font tiêu đề</h1>
+      <p class="body">Fallback cố ý đặt là <code>monospace</code>: ký tự nào không có trong font sẽ hiện ra rõ ràng là font khác. Khung nét đứt = hộp <code>overflow: hidden</code> với <code>line-height: var(--leading-display)</code>.</p>
+
+      <div id="specimens"></div>
+
+      <p class="label">EN · tiêu đề tiếng Anh dài hơn (Unbounded 700, --text-2xl)</p>
+      <p class="en" style="font-weight:700">I dive deep into the problem before drawing the first pixel.</p>
+
+      <p class="label">NỘI DUNG · Be Vietnam Pro 400 / 500 / 700</p>
+      <p class="body" style="font-weight:400">Tôi lặn sâu vào vấn đề trước khi vẽ pixel đầu tiên. Ưu ắ ẵ ệ ỗ ữ ỹ Đ.</p>
+      <p class="body" style="font-weight:500">Tôi lặn sâu vào vấn đề trước khi vẽ pixel đầu tiên. Ưu ắ ẵ ệ ỗ ữ ỹ Đ.</p>
+      <p class="body" style="font-weight:700">Tôi lặn sâu vào vấn đề trước khi vẽ pixel đầu tiên. Ưu ắ ẵ ệ ỗ ữ ỹ Đ.</p>
+      <p class="label">NHÃN · JetBrains Mono</p>
+      <p style="font-family: var(--font-mono)">ĐỘ SÂU 1.000 m · Tầng 3 · Ưu ắ ẵ ệ ỗ ữ ỹ Đ</p>
+
+      <h2 style="font-size: var(--text-lg); margin-top: var(--space-12)">Kết quả đo tự động</h2>
+      <div id="report"><p>Đang đo…</p></div>
+
+      <h2 style="font-size: var(--text-lg); margin-top: var(--space-12)">Tương phản token màu (WCAG)</h2>
+      <div id="contrast"></div>
+    </div>
+    <script type="module" src="./font-test.ts"></script>
+  </body>
+</html>

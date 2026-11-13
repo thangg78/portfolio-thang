@@ -1,0 +1,149 @@
+/* Thước đo độ sâu (src/effects/depth-gauge.ts). Thay thanh cuộn của trình duyệt. */
+/* Ẩn thanh cuộn ngay từ lần vẽ đầu (.js gắn ở <head>), không đợi .has-gauge (gắn sau)
+   → khung nhìn không đột ngột rộng thêm ~15 px làm cả trang dàn lại (CLS). */
+/* Chỉ trang có thước đo (trang chính). Trang case study không có thước → giữ thanh cuộn của trình duyệt. */
+html.js:not(:has(body.case)) { scrollbar-width: none; }
+html.js:not(:has(body.case))::-webkit-scrollbar { display: none; }
+
+.gauge {
+  position: fixed;
+  z-index: 15;
+  top: 16vh;
+  bottom: 16vh;
+  right: 2px;
+  width: 24px;
+  --line: var(--foam);
+  --edge: color-mix(in srgb, var(--deep) 75%, transparent);
+}
+
+/* Vùng bấm/kéo rộng 24px, nét vẽ chỉ 2px. Viền deep quanh nét foam → nhìn thấy trên mọi màu nước (≥ 3:1). */
+.gauge__rail {
+  position: absolute;
+  inset: 0;
+  cursor: ns-resize;
+  touch-action: none;
+}
+.gauge__rail::before,
+.gauge__fill {
+  content: '';
+  position: absolute;
+  right: 11px;
+  width: 2px;
+  top: 0;
+  border-radius: 2px;
+}
+.gauge__rail::before {
+  bottom: 0;
+  background: var(--line);
+  box-shadow: 0 0 0 1px var(--edge);
+}
+.gauge__fill {
+  height: calc(var(--p, 0) * 100%);
+  background: var(--light);
+  box-shadow: 0 0 0 1px var(--edge);
+}
+
+/* Kim: chấm coral viền deep + số mét */
+.gauge__needle {
+  position: absolute;
+  right: 6px;
+  top: calc(var(--p, 0) * 100%);
+  width: 12px;
+  height: 12px;
+  translate: 0 -50%;
+  border-radius: 50%;
+  background: var(--coral);
+  box-shadow: 0 0 0 2px var(--deep);
+}
+.gauge__readout {
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  translate: 0 -50%;
+  padding: 2px var(--space-2);
+  border-radius: 999px;
+  background: var(--deep);
+  color: var(--foam);
+  border: 1px solid color-mix(in srgb, var(--foam) 35%, transparent);
+  font: 600 var(--text-xs)/1.4 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease);
+}
+
+/* Mốc */
+.gauge__ticks { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; pointer-events: none; }
+.gauge__tick { position: absolute; right: 0; top: calc(var(--at) * 100%); translate: 0 -50%; }
+.gauge__tick a {
+  pointer-events: auto;
+  position: relative;
+  display: block;
+  width: var(--tap);   /* vùng chạm 44 × 44 (vạch vẽ vẫn ở mép phải) */
+  height: var(--tap);
+  color: var(--foam);
+  text-decoration: none;
+}
+.gauge__tick a::before {
+  content: '';
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  width: 10px;
+  height: 2px;
+  translate: 0 -50%;
+  background: var(--line);
+  box-shadow: 0 0 0 1px var(--edge);
+}
+.gauge__label {
+  position: absolute;
+  right: calc(100% + 6px);
+  top: 50%;
+  translate: 0 -50%;
+  padding: 2px var(--space-2);
+  border-radius: 4px;
+  background: var(--deep);
+  color: var(--foam);
+  font: 500 var(--text-xs)/1.4 var(--font-mono);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-fast) var(--ease), visibility 0s linear var(--dur-fast);
+}
+.gauge__m { color: var(--light); }
+.gauge__tick a:hover .gauge__label,
+.gauge__tick a:focus-visible .gauge__label {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.gauge__tick a:focus-visible { outline: 2px solid var(--light); outline-offset: 0; border-radius: 4px; }
+/* Khi đang xem nhãn mốc thì giấu số mét để khỏi chồng chữ */
+.gauge:has(.gauge__tick a:is(:hover, :focus-visible)) .gauge__readout { opacity: 0; }
+
+/* Màn cảm ứng: thước chỉ để xem (không có vùng kéo hẹp hơn 44 px bắt nhầm cú vuốt ở mép phải);
+   cuộn bằng tay như bình thường. Mốc vẫn dùng được bằng bàn phím. */
+@media (pointer: coarse) {
+  .gauge__rail, .gauge__tick a { pointer-events: none; }
+}
+
+/* Màn nhỏ: thước mảnh nằm gọn trong lề phải (gutter ≥ 16px), số mét chỉ hiện khi đang cuộn/kéo */
+@media (max-width: 767px) {
+  .gauge { right: 0; width: 14px; }
+  .gauge__rail::before, .gauge__fill { right: 5px; }
+  .gauge__tick a { width: 14px; height: 14px; }
+  .gauge__tick a::before { right: 3px; width: 6px; }
+  .gauge__needle { right: 2px; width: 8px; height: 8px; box-shadow: 0 0 0 1.5px var(--deep); }
+  .gauge__readout { opacity: 0; }
+  .gauge.is-moving .gauge__readout,
+  .gauge.is-dragging .gauge__readout { opacity: 1; }
+}
+
+/* Màn từ 768: thước rời mép một chút và chừa chỗ để số mét không đè lên chữ */
+@media (min-width: 768px) {
+  .gauge { right: 14px; }
+  /* Dùng .js (gắn ở <head> trước lần vẽ đầu) thay vì .has-gauge (gắn sau) → không dịch bố cục khi thước xuất hiện */
+  html.js :is(.hero, .tier, .process, .lab, .contact) {
+    padding-right: calc(var(--gutter) + 5.5rem);
+  }
+}

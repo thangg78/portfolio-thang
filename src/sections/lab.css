@@ -1,0 +1,30 @@
+/* Phòng thử nghiệm: lưới nhỏ, thêm mục bằng cách thêm <li class="lab__item">. */
+.lab { padding-block: var(--space-16) var(--space-24); }
+.lab > * { max-width: 1600px; margin-inline: auto; }
+
+.lab__grid {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-8);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-4);
+}
+.lab__item {
+  border: 1px dashed var(--rule);
+  border-radius: 6px;
+  padding: var(--space-6);
+}
+.lab__tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--light);
+  margin: 0;
+}
+.lab__title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  padding-top: var(--display-clip-pad);
+  margin-top: var(--space-2);
+}
+.lab__text { margin: var(--space-3) 0 0; font-size: var(--text-sm); color: var(--fg-muted); }

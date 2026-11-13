@@ -1,0 +1,204 @@
+/* Khung chung: màu theo tầng nước, chữ, nút, nhãn độ sâu. */
+
+/* Mỗi vùng đặt bộ màu riêng qua biến. Mọi cặp chữ/nền đã đo (dev/font-test.html):
+   chữ thường ≥ 4,5:1, chữ lớn và viền thành phần ≥ 3:1. Quy tắc ở tokens.css. */
+.zone-surface, .hero {
+  --bg: var(--foam);
+  --fg: var(--deep);
+  --fg-muted: var(--mid);
+  --link: var(--ocean-ink);       /* 5,69:1 */
+  --link-line: var(--ocean-ink);
+  --focus: var(--ocean-ink);
+  --btn-bg: var(--ocean-ink);     /* chữ foam trên nút: 5,69:1 */
+  --btn-bg-hover: var(--ocean-ink-hover);
+  --rule: color-mix(in srgb, var(--mid) 30%, transparent);
+}
+.tier--1, .zone-1 {
+  --bg: var(--shallow);
+  --fg: var(--deep);
+  --fg-muted: var(--mid);
+  --link: var(--ocean-ink);       /* 4,54:1 */
+  --link-line: var(--ocean-ink);
+  --focus: var(--deep);
+  --btn-bg: var(--ocean-ink);
+  --btn-bg-hover: var(--ocean-ink-hover);
+  --rule: color-mix(in srgb, var(--mid) 35%, transparent);
+}
+.tier--2, .zone-2 {
+  --bg: var(--mid);
+  --fg: var(--foam);
+  --fg-muted: var(--shallow);
+  --link: var(--light);           /* 7,12:1 — --ocean trên --mid chỉ 2,45:1 */
+  --link-line: var(--light);
+  --focus: var(--light);
+  --btn-bg: var(--light);         /* nút sáng chữ deep: --ocean không tách được khỏi nền --mid */
+  --btn-fg: var(--deep);
+  --btn-bg-hover: var(--foam);
+  --rule: color-mix(in srgb, var(--shallow) 30%, transparent);
+}
+.tier--3, .process, .lab, .contact, .zone-3 {
+  --bg: var(--deep);
+  --fg: var(--foam);
+  --fg-muted: var(--shallow);
+  --link: var(--light);           /* 11,73:1 */
+  --link-line: var(--light);
+  --focus: var(--light);
+  --btn-bg: var(--ocean);         /* chữ lớn 4,23 ≥ 3:1, viền nút so với nền 4,04 ≥ 3:1 */
+  --btn-bg-hover: #3D80FF;
+  --rule: color-mix(in srgb, var(--shallow) 22%, transparent);
+}
+
+.hero, .tier, .process, .lab, .contact {
+  background: var(--bg);
+  color: var(--fg);
+  padding-inline: var(--gutter);
+}
+
+:where(.hero, .tier, .process, .lab, .contact, .case) :focus-visible { outline-color: var(--focus); }
+
+:where(.hero, .tier, .process, .lab, .contact, .case) a:not(.btn) {
+  color: var(--link);
+  text-decoration-color: var(--link-line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color var(--dur-fast) var(--ease);
+}
+:where(.hero, .tier, .process, .lab, .contact, .case) a:not(.btn):hover { text-decoration-color: currentColor; }
+
+/* Dải chuyển màu giữa các tầng — không cắt cứng, không có chữ đè lên */
+.thermocline { height: clamp(6rem, 18vh, 12rem); }
+.thermocline--1-2 { background: linear-gradient(var(--shallow), var(--mid)); }
+.thermocline--2-3 { background: linear-gradient(var(--mid), var(--deep)); }
+
+/* Nhãn độ sâu */
+.depth-tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin: 0 0 var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.depth-tag::before {
+  content: '';
+  width: var(--space-8);
+  height: 1px;
+  background: currentColor;
+}
+
+/* Nút: màu nền theo vùng (--btn-bg). Chữ 19px đậm = "chữ lớn" theo WCAG. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  padding: var(--space-3) var(--space-6);
+  border: 0;
+  border-radius: 999px;
+  background: var(--btn-bg, var(--ocean-ink));
+  color: var(--btn-fg, var(--foam));
+  font: 700 1.1875rem/1.2 var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.btn:hover { background: var(--btn-bg-hover, var(--ocean-ink-hover)); }
+.btn:active { transform: translateY(1px); }
+
+.section-title {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  padding-top: var(--display-clip-pad);
+}
+.section-intro {
+  max-width: 48ch;
+  color: var(--fg-muted);
+  margin: var(--space-4) 0 0;
+}
+
+/* Thanh trên: nút ngôn ngữ, nền đặc (không kính mờ) */
+.topbar {
+  position: fixed;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 20;
+  display: flex;
+  gap: var(--space-2);
+}
+.lang-toggle, .fx-toggle {
+  min-width: var(--tap);
+  min-height: var(--tap);
+  padding: 0 var(--space-4);
+  border: 1px solid color-mix(in srgb, var(--foam) 35%, transparent);
+  border-radius: 999px;
+  background: var(--deep);
+  color: var(--foam);
+  font: 600 var(--text-sm)/1 var(--font-mono);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.lang-toggle:hover, .fx-toggle:hover { background: var(--mid); }
+.lang-toggle:focus-visible, .fx-toggle:focus-visible { outline: 3px solid var(--light); outline-offset: 2px; }
+.fx-toggle { font-family: var(--font-body); font-weight: 500; letter-spacing: 0; }
+
+/* Màn hẹp: thanh trên nằm ở đầu trang và cuộn đi theo trang, không che chữ khi đọc */
+@media (max-width: 767px) {
+  .topbar { position: absolute; }
+}
+.fx-toggle[aria-disabled='true'] { cursor: default; background: var(--deep); opacity: 0.85; }
+
+.skip-link {
+  position: absolute;
+  left: var(--space-3);
+  top: -100px;
+  z-index: 30;
+  padding: var(--space-3) var(--space-4);
+  background: var(--deep);
+  color: var(--foam);
+  border-radius: 8px;
+}
+.skip-link:focus { top: var(--space-3); }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Phần chỉ chạy được khi có JavaScript */
+.no-js .js-only { display: none !important; }
+
+figure { margin: 0; }
+figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+  margin-top: var(--space-2);
+}
+
+/* Dự án chưa công khai: chỉ thấy khi chạy dev */
+[data-unpublished] { position: relative; outline: 2px dashed var(--coral); outline-offset: -8px; }
+[data-unpublished]::before {
+  content: attr(data-unpublished);
+  position: absolute;
+  top: var(--space-4);
+  left: 50%;
+  translate: -50% 0;
+  padding: var(--space-1) var(--space-3);
+  background: var(--coral);   /* mảng coral, chữ deep bên trên: 6,54:1 */
+  color: var(--deep);
+  font: 600 var(--text-xs)/1.4 var(--font-mono);
+  border-radius: 4px;
+  z-index: 5;
+  width: max-content;
+  max-width: calc(100% - 2 * var(--space-4)); /* xuống dòng ở màn hẹp, không gây cuộn ngang */
+  text-align: center;
+}

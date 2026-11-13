@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tạo ảnh nhỏ (dev)</title>
+  </head>
+  <body>
+    <!-- Dev: vẽ ảnh lên canvas ở chiều rộng nhỏ hơn, xuất WebP (chất lượng 0,82) vào <textarea> để script lưu ra file.
+         Không dùng thư viện ngoài: chỉ canvas của trình duyệt. -->
+    <script>
+      // ?only=cover-ps&q=0.7 → chỉ làm lại ảnh bìa PS với chất lượng khác
+      const q = Number(new URLSearchParams(location.search).get('q')) || 0.82;
+      const only = new URLSearchParams(location.search).get('only');
+      const all = [
+        ['/work/playstation-ui/cover.webp', 960],
+        ['/work/playstation-ui/01-home-focus-games.webp', 720],
+        ['/work/playstation-ui/02-game-detail-hero.webp', 720],
+        ['/work/playstation-ui/03-library.webp', 720],
+        ['/work/playstation-ui/04-hardware-power-on.webp', 720],
+        ['/work/playstation-ui/05-save-data-1994.webp', 720],
+        ['/work/playstation-ui/06-cart.webp', 720],
+        ['/work/karsia/cover.webp', 960],
+        ['/work/karsia/before.webp', 960],
+        ['/work/karsia/after.webp', 960],
+        ['/work/karsia/01-tin-tuc.webp', 960],
+        ['/work/2idea/cover.webp', 960],
+        ['/work/2idea/02-qua-tet.webp', 960],
+      ];
+      const jobs = only === 'cover-ps' ? all.slice(0, 1) : all;
+      (async () => {
+        const out = [];
+        for (const [src, w] of jobs) {
+          const img = new Image();
+          await new Promise((ok, fail) => { img.onload = ok; img.onerror = () => fail(new Error('load ' + src)); img.src = src; });
+          const h = Math.round((img.naturalHeight * w) / img.naturalWidth);
+          const c = document.createElement('canvas');
+          c.width = w;
+          c.height = h;
+          const ctx = c.getContext('2d');
+          ctx.imageSmoothingQuality = 'high';
+          ctx.drawImage(img, 0, 0, w, h);
+          out.push({ src, w, h, data: c.toDataURL('image/webp', q) });
+        }
+        const ta = document.createElement('textarea');
+        ta.id = 'out';
+        ta.textContent = JSON.stringify(out); // textContent để --dump-dom thấy được (value thì không nằm trong DOM)
+        document.body.append(ta);
+      })().catch((e) => { const p = document.createElement('pre'); p.id = 'err'; p.textContent = String(e); document.body.append(p); });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="vi" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ps.title}} · {{meta.title}}</title>
+    <meta name="description" content="{{ps.summary}}" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Ảnh bìa là phần tử LCP của trang: nạp ngay, song song với CSS -->
+    <link rel="preload" as="image" href="/work/playstation-ui/cover.webp" imagesrcset="/work/playstation-ui/cover-960.webp 960w, /work/playstation-ui/cover.webp 1920w" imagesizes="(min-width: 1600px) 1520px, 100vw" fetchpriority="high" />
+<script>document.documentElement.classList.replace('no-js', 'js');</script>
+  </head>
+  <body class="case zone-1" data-case="ps">
+    <a class="skip-link" href="#main" data-i18n="nav.skip"></a>
+
+    <header class="topbar">
+      <button class="fx-toggle js-only" type="button" data-fx-toggle aria-pressed="false" data-i18n="nav.fxOff"></button>
+      <button class="lang-toggle js-only" type="button" data-lang-toggle data-i18n="nav.lang" data-i18n-attr="aria-label:nav.langAria"></button>
+    </header>
+
+    <main id="main" class="case__main">
+      <nav class="case__nav">
+        <a class="case__back" href="/#tang-1" data-i18n="nav.back"></a>
+      </nav>
+
+      <header class="case__head">
+        <p class="depth-tag"><span data-i18n="ps.depth"></span> · <span data-i18n="ps.tier"></span></p>
+        <h1 class="case__title" data-i18n="ps.title"></h1>
+        <p class="tier__kind" data-i18n="ps.kind"></p>
+        <p class="case__summary" data-i18n="ps.summary"></p>
+        <p class="disclaimer" data-i18n="ps.disclaimer"></p>
+      </header>
+
+      <figure class="case__cover">
+        <img src="/work/playstation-ui/cover.webp" srcset="/work/playstation-ui/cover-960.webp 960w, /work/playstation-ui/cover.webp 1920w" sizes="(min-width: 1600px) 1520px, 100vw" width="1920" height="1080" fetchpriority="high" decoding="async" data-cover="ps" data-i18n-attr="alt:ps.coverAlt" />
+      </figure>
+
+      <section class="case-sec" aria-labelledby="ps-ctx">
+        <h2 class="case-sec__label" id="ps-ctx" data-i18n="labels.context"></h2>
+        <div class="case-sec__body">
+          <p class="case-sec__lead" data-i18n="ps.case.context"></p>
+        </div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="ps-role">
+        <h2 class="case-sec__label" id="ps-role" data-i18n="labels.role"></h2>
+        <div class="case-sec__body">
+          <p data-i18n="ps.role"></p>
+        </div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="ps-method">
+        <h2 class="case-sec__label" id="ps-method" data-i18n="labels.method"></h2>
+        <div class="case-sec__body">
+          <p data-i18n="ps.case.methodIntro"></p>
+          <ul class="steps" data-i18n-list="ps.method"></ul>
+          <div class="case-gallery case-gallery--2">
+            <figure>
+              <img src="/work/playstation-ui/01-home-focus-games.webp" srcset="/work/playstation-ui/01-home-focus-games-720.webp 720w, /work/playstation-ui/01-home-focus-games.webp 1440w" sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw" width="1440" height="900" loading="lazy" decoding="async" data-i18n-attr="alt:ps.case.g1Alt" />
+              <figcaption data-i18n="ps.case.g1Cap"></figcaption>
+            </figure>
+            <figure>
+              <img src="/work/playstation-ui/03-library.webp" srcset="/work/playstation-ui/03-library-720.webp 720w, /work/playstation-ui/03-library.webp 1440w" sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw" width="1440" height="900" loading="lazy" decoding="async" data-i18n-attr="alt:ps.case.g3Alt" />
+              <figcaption data-i18n="ps.case.g3Cap"></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="ps-output">
+        <h2 class="case-sec__label" id="ps-output" data-i18n="labels.output"></h2>
+        <div class="case-sec__body">
+          <div class="case-lists">
+            <div>
+              <h3 class="case-sub" data-i18n="ps.case.screensTitle"></h3>
+              <ul class="case-list" data-i18n-list="ps.case.screens"></ul>
+            </div>
+            <div>
+              <h3 class="case-sub" data-i18n="ps.case.systemTitle"></h3>
+              <ul class="case-list" data-i18n-list="ps.case.system"></ul>
+            </div>
+          </div>
+          <div class="case-gallery case-gallery--2">
+            <figure>
+              <img src="/work/playstation-ui/02-game-detail-hero.webp" srcset="/work/playstation-ui/02-game-detail-hero-720.webp 720w, /work/playstation-ui/02-game-detail-hero.webp 1440w" sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw" width="1440" height="900" loading="lazy" decoding="async" data-i18n-attr="alt:ps.img1Alt" />
+              <figcaption data-i18n="ps.img1Cap"></figcaption>
+            </figure>
+            <figure>
+              <img src="/work/playstation-ui/04-hardware-power-on.webp" srcset="/work/playstation-ui/04-hardware-power-on-720.webp 720w, /work/playstation-ui/04-hardware-power-on.webp 1440w" sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw" width="1440" height="900" loading="lazy" decoding="async" data-i18n-attr="alt:ps.img2Alt" />
+              <figcaption data-i18n="ps.img2Cap"></figcaption>
+            </figure>
+            <figure>
+              <img src="/work/playstation-ui/05-save-data-1994.webp" srcset="/work/playstation-ui/05-save-data-1994-720.webp 720w, /work/playstation-ui/05-save-data-1994.webp 1440w" sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw" width="1440" height="900" loading="lazy" decoding="async" data-i18n-attr="alt:ps.case.g5Alt" />
+              <figcaption data-i18n="ps.case.g5Cap"></figcaption>
+            </figure>
+            <figure>
+              <img src="/work/playstation-ui/06-cart.webp" srcset="/work/playstation-ui/06-cart-720.webp 720w, /work/playstation-ui/06-cart.webp 1440w" sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw" width="1440" height="900" loading="lazy" decoding="async" data-i18n-attr="alt:ps.case.g6Alt" />
+              <figcaption data-i18n="ps.case.g6Cap"></figcaption>
+            </figure>
+          </div>
+          <figure class="strip case-strip">
+            <div class="strip__frame" tabindex="0" role="region" data-i18n-attr="aria-label:ps.case.fullCap">
+              <img src="/work/playstation-ui/07-game-detail-full.webp" width="1440" height="3432" loading="lazy" decoding="async" data-i18n-attr="alt:ps.case.fullAlt" />
+            </div>
+            <figcaption data-i18n="ps.case.fullCap"></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="ps-result">
+        <h2 class="case-sec__label" id="ps-result" data-i18n="labels.result"></h2>
+        <div class="case-sec__body">
+          <p class="case-sec__lead" data-i18n="ps.result"></p>
+          <p class="case-note" data-i18n="ps.case.resultNote"></p>
+        </div>
+      </section>
+
+      <!--draft:ps-->
+      <section class="case-sec" aria-labelledby="ps-reflect">
+        <h2 class="case-sec__label" id="ps-reflect" data-i18n="labels.reflection"></h2>
+        <div class="case-sec__body">
+          <p data-i18n="ps.case.reflection"></p>
+        </div>
+      </section>
+      <!--/draft:ps-->
+
+      <footer class="case__end">
+        <p class="disclaimer" data-i18n="ps.disclaimer"></p>
+        <nav class="case__next">
+          <!--project:karsia-->
+          <a class="case__next-link" href="/work/karsia/" data-project="karsia"><span class="depth-tag"><span data-i18n="nav.next"></span> · <span data-i18n="karsia.depth"></span></span> <span class="case__next-title" data-i18n="karsia.title"></span></a>
+          <!--/project:karsia-->
+          <a class="case__back" href="/#tang-1" data-i18n="nav.back"></a>
+        </nav>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/case.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="vi" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{meta.title}}</title>
+    <meta name="description" content="{{meta.description}}" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta name="theme-color" content="#F2F7FA" />
+    <script>
+      (function () {
+        var r = document.documentElement, off = false;
+        r.classList.replace('no-js', 'js');
+        var done = false;
+        try { off = localStorage.getItem('fx') === 'off'; } catch (e) {}
+        try { done = sessionStorage.getItem('intro-done') === '1'; } catch (e) { done = true; }
+        if (off || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        // Giấu tên tới khi JS tách ký tự xong (tránh nháy).
+        r.classList.add('nr-pending');
+        // Intro "đàn con trỏ dựng trang": chỉ lần vào đầu tiên trong phiên, khi vào từ đầu trang (không có #neo).
+        // Ẩn sẵn các lớp trước lần vẽ đầu để không nháy; intro.ts gỡ class này.
+        if (!done && !location.hash) r.classList.add('intro-pending');
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="nav.skip"></a>
+
+    <header class="topbar">
+      <button class="fx-toggle js-only" type="button" data-fx-toggle aria-pressed="false" data-i18n="nav.fxOff"></button>
+      <button class="lang-toggle js-only" type="button" data-lang-toggle data-i18n="nav.lang" data-i18n-attr="aria-label:nav.langAria"></button>
+    </header>
+
+    <main id="main">
+      <!-- ============ 0 m · Mặt nước ============ -->
+      <section class="hero" id="mat-nuoc" data-depth-label="0 m" aria-labelledby="hero-name">
+        <div class="hero__inner">
+          <!-- data-layer: các lớp mà intro "đàn con trỏ" dựng lại (type = gõ chữ, name = gõ tên, block = quét lộ khối) -->
+          <p class="depth-tag" data-i18n="hero.depth" data-layer="type"></p>
+          <h1 class="hero__name" id="hero-name" data-layer="name">
+            <span class="hero__line" data-i18n="hero.name1"></span>
+            <span class="hero__line" data-i18n="hero.name2"></span>
+          </h1>
+          <p class="hero__role" data-i18n="hero.role" data-layer="type"></p>
+          <p class="hero__tagline" data-i18n="hero.tagline" data-layer="type"></p>
+
+          <dl class="hero__facts" data-layer="block">
+            <div>
+              <dt data-i18n="hero.toolsLabel"></dt>
+              <dd data-i18n="hero.tools"></dd>
+            </div>
+            <div>
+              <dt data-i18n="hero.langsLabel"></dt>
+              <dd data-i18n="hero.langs"></dd>
+            </div>
+          </dl>
+
+          <a class="btn btn--dive" href="#tang-1" data-i18n="hero.cta" data-layer="block"></a>
+        </div>
+      </section>
+
+      <!-- ============ 10 m · Tầng 1 · PlayStation UI ============ -->
+      <!--project:ps-->
+      <section class="tier tier--1" id="tang-1" data-project="ps" aria-labelledby="ps-title">
+        <header class="tier__head">
+          <p class="depth-tag"><span data-i18n="ps.depth"></span> · <span data-i18n="ps.tier"></span></p>
+          <p class="tier__kind" data-i18n="ps.kind"></p>
+        </header>
+
+        <figure class="tier__cover">
+          <a class="cover-link" href="/work/playstation-ui/" data-cover-link>
+            <img src="/work/playstation-ui/cover.webp" srcset="/work/playstation-ui/cover-960.webp 960w, /work/playstation-ui/cover.webp 1920w" sizes="(min-width: 1024px) 60vw, 100vw" width="1920" height="1080" loading="lazy" decoding="async" data-cover="ps" data-i18n-attr="alt:ps.coverAlt" />
+            <span class="visually-hidden" data-i18n="nav.viewCase"></span>
+          </a>
+        </figure>
+
+        <div class="tier__body">
+          <h2 class="tier__title" id="ps-title" data-i18n="ps.title"></h2>
+          <p class="tier__summary" data-i18n="ps.summary"></p>
+          <p class="disclaimer" data-i18n="ps.disclaimer"></p>
+
+          <dl class="facts">
+            <dt data-i18n="labels.role"></dt>
+            <dd data-i18n="ps.role"></dd>
+            <dt data-i18n="labels.method"></dt>
+            <dd><ul class="steps" data-i18n-list="ps.method"></ul></dd>
+            <dt data-i18n="labels.output"></dt>
+            <dd data-i18n="ps.output"></dd>
+            <dt data-i18n="labels.result"></dt>
+            <dd class="facts__result" data-i18n="ps.result"></dd>
+          </dl>
+          <a class="case-link" href="/work/playstation-ui/" data-i18n="nav.viewCase"></a>
+        </div>
+
+        <div class="tier__gallery">
+          <figure>
+            <img src="/work/playstation-ui/02-game-detail-hero.webp" srcset="/work/playstation-ui/02-game-detail-hero-720.webp 720w, /work/playstation-ui/02-game-detail-hero.webp 1440w" sizes="(min-width: 1024px) 30vw, 50vw" width="1440" height="900" loading="lazy" decoding="async" data-i18n-attr="alt:ps.img1Alt" />
+            <figcaption data-i18n="ps.img1Cap"></figcaption>
+          </figure>
+          <figure>
+            <img src="/work/playstation-ui/04-hardware-power-on.webp" srcset="/work/playstation-ui/04-hardware-power-on-720.webp 720w, /work/playstation-ui/04-hardware-power-on.webp 1440w" sizes="(min-width: 1024px) 30vw, 50vw" width="1440" height="900" loading="lazy" decoding="async" data-i18n-attr="alt:ps.img2Alt" />
+            <figcaption data-i18n="ps.img2Cap"></figcaption>
+          </figure>
+        </div>
+      </section>
+      <!--/project:ps-->
+
+      <div class="thermocline thermocline--1-2" aria-hidden="true"></div>
+
+      <!-- ============ 200 m · Tầng 2 · KARSIA ============ -->
+      <!--project:karsia-->
+      <section class="tier tier--2" id="tang-2" data-project="karsia" aria-labelledby="karsia-title">
+        <div class="tier__body">
+          <p class="depth-tag"><span data-i18n="karsia.depth"></span> · <span data-i18n="karsia.tier"></span></p>
+          <p class="tier__kind" data-i18n="karsia.kind"></p>
+          <h2 class="tier__title" id="karsia-title" data-i18n="karsia.title"></h2>
+          <p class="tier__summary" data-i18n="karsia.summary"></p>
+
+          <figure class="triage" aria-labelledby="triage-cap">
+            <figcaption class="triage__cap" id="triage-cap" data-i18n="karsia.triageTitle"></figcaption>
+            <div class="triage__bar" aria-hidden="true">
+              <span class="triage__seg triage__seg--light" style="flex-grow: 29">29</span>
+              <span class="triage__seg triage__seg--mid" style="flex-grow: 9">9</span>
+              <span class="triage__seg triage__seg--heavy" style="flex-grow: 4">4</span>
+            </div>
+            <ul class="triage__legend">
+              <li class="triage__key triage__key--light"><span class="triage__n">29</span> <span data-i18n="karsia.triageLight"></span></li>
+              <li class="triage__key triage__key--mid"><span class="triage__n">9</span> <span data-i18n="karsia.triageMid"></span></li>
+              <li class="triage__key triage__key--heavy"><span class="triage__n">4</span> <span data-i18n="karsia.triageHeavy"></span></li>
+            </ul>
+            <p class="triage__note" data-i18n="karsia.highlight"></p>
+          </figure>
+
+          <dl class="facts">
+            <dt data-i18n="labels.role"></dt>
+            <dd data-i18n="karsia.role"></dd>
+            <dt data-i18n="labels.method"></dt>
+            <dd><ul class="steps" data-i18n-list="karsia.method"></ul></dd>
+            <dt data-i18n="labels.output"></dt>
+            <dd data-i18n="karsia.output"></dd>
+            <dt data-i18n="labels.live"></dt>
+            <dd><a href="https://karsiaretreatninhbinh.com" target="_blank" rel="noopener">karsiaretreatninhbinh.com</a></dd>
+          </dl>
+          <a class="case-link" href="/work/karsia/" data-i18n="nav.viewCase"></a>
+        </div>
+
+        <figure class="tier__cover">
+          <a class="cover-link" href="/work/karsia/" data-cover-link>
+            <img src="/work/karsia/cover.webp" srcset="/work/karsia/cover-960.webp 960w, /work/karsia/cover.webp 1863w" sizes="(min-width: 1024px) 60vw, 100vw" width="1863" height="1164" loading="lazy" decoding="async" data-cover="karsia" data-i18n-attr="alt:karsia.coverAlt" />
+            <span class="visually-hidden" data-i18n="nav.viewCase"></span>
+          </a>
+        </figure>
+
+        <figure class="compare">
+          <div class="compare__pair">
+            <div class="compare__item">
+              <p class="compare__label" data-i18n="labels.before"></p>
+              <img src="/work/karsia/before.webp" srcset="/work/karsia/before-960.webp 960w, /work/karsia/before.webp 1863w" sizes="(min-width: 1024px) 45vw, (min-width: 768px) 50vw, 100vw" width="1863" height="1100" loading="lazy" decoding="async" data-i18n-attr="alt:karsia.beforeAlt" />
+            </div>
+            <div class="compare__item">
+              <p class="compare__label" data-i18n="labels.after"></p>
+              <img src="/work/karsia/after.webp" srcset="/work/karsia/after-960.webp 960w, /work/karsia/after.webp 1863w" sizes="(min-width: 1024px) 45vw, (min-width: 768px) 50vw, 100vw" width="1863" height="1100" loading="lazy" decoding="async" data-i18n-attr="alt:karsia.afterAlt" />
+            </div>
+          </div>
+          <figcaption data-i18n="karsia.compareCap"></figcaption>
+        </figure>
+      </section>
+      <!--/project:karsia-->
+
+      <div class="thermocline thermocline--2-3" aria-hidden="true"></div>
+
+      <!-- ============ 1.000 m · Tầng 3 · 2IDEA ============ -->
+      <!--project:idea-->
+      <section class="tier tier--3" id="tang-3" data-project="idea" aria-labelledby="idea-title">
+        <header class="tier__head">
+          <p class="depth-tag"><span data-i18n="idea.depth"></span> · <span data-i18n="idea.tier"></span></p>
+          <h2 class="tier__title tier__title--huge" id="idea-title" data-i18n="idea.title"></h2>
+          <p class="tier__kind" data-i18n="idea.kind"></p>
+        </header>
+
+        <p class="tier__summary tier__summary--lead" data-i18n="idea.summary"></p>
+
+        <figure class="tier__cover">
+          <a class="cover-link" href="/work/2idea/" data-cover-link>
+            <img src="/work/2idea/cover.webp" srcset="/work/2idea/cover-960.webp 960w, /work/2idea/cover.webp 1920w" sizes="(min-width: 1024px) 60vw, 100vw" width="1920" height="1200" loading="lazy" decoding="async" data-cover="idea" data-i18n-attr="alt:idea.coverAlt" />
+            <span class="visually-hidden" data-i18n="nav.viewCase"></span>
+          </a>
+        </figure>
+
+        <dl class="facts facts--cols">
+          <div>
+            <dt data-i18n="labels.role"></dt>
+            <dd data-i18n="idea.role"></dd>
+            <dt data-i18n="labels.scale"></dt>
+            <dd data-i18n="idea.scale"></dd>
+            <dt data-i18n="labels.output"></dt>
+            <dd data-i18n="idea.output"></dd>
+          </div>
+          <div>
+            <dt data-i18n="labels.method"></dt>
+            <dd><ul class="steps" data-i18n-list="idea.method"></ul></dd>
+          </div>
+          <div>
+            <dt data-i18n="labels.result"></dt>
+            <dd class="facts__result" data-i18n="idea.result"></dd>
+          </div>
+        </dl>
+        <a class="case-link tier__case-link" href="/work/2idea/" data-i18n="nav.viewCase"></a>
+
+        <div class="tier__shots">
+          <figure class="strip">
+            <div class="strip__frame" tabindex="0" role="region" data-i18n-attr="aria-label:idea.stripCap">
+              <img src="/work/2idea/01-home-full.webp" width="960" height="4970" loading="lazy" decoding="async" data-i18n-attr="alt:idea.stripAlt" />
+            </div>
+            <figcaption data-i18n="idea.stripCap"></figcaption>
+          </figure>
+          <figure class="tier__mobile">
+            <img src="/work/2idea/04-mobile.webp" width="1330" height="924" loading="lazy" decoding="async" data-i18n-attr="alt:idea.mobileAlt" />
+            <figcaption data-i18n="idea.mobileCap"></figcaption>
+          </figure>
+        </div>
+      </section>
+      <!--/project:idea-->
+
+      <!-- ============ Cách tôi làm việc ============ -->
+      <section class="process" id="cach-lam" aria-labelledby="process-title">
+        <h2 class="section-title" id="process-title" data-i18n="process.title"></h2>
+        <p class="section-intro" data-i18n="process.intro"></p>
+        <ol class="process__list">
+          <li class="process__step">
+            <h3 class="process__name"><span class="process__idx">01</span> <span data-i18n="process.s1Title"></span></h3>
+            <p class="process__num" data-i18n="process.s1Num"></p>
+            <p class="process__text" data-i18n="process.s1Text"></p>
+          </li>
+          <li class="process__step">
+            <h3 class="process__name"><span class="process__idx">02</span> <span data-i18n="process.s2Title"></span></h3>
+            <p class="process__num" data-i18n="process.s2Num"></p>
+            <p class="process__text" data-i18n="process.s2Text"></p>
+          </li>
+          <li class="process__step">
+            <h3 class="process__name"><span class="process__idx">03</span> <span data-i18n="process.s3Title"></span></h3>
+            <p class="process__num" data-i18n="process.s3Num"></p>
+            <p class="process__text" data-i18n="process.s3Text"></p>
+          </li>
+          <li class="process__step">
+            <h3 class="process__name"><span class="process__idx">04</span> <span data-i18n="process.s4Title"></span></h3>
+            <p class="process__num" data-i18n="process.s4Num"></p>
+            <p class="process__text" data-i18n="process.s4Text"></p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ============ Phòng thử nghiệm ============ -->
+      <section class="lab" id="thu-nghiem" aria-labelledby="lab-title">
+        <h2 class="section-title" id="lab-title" data-i18n="lab.title"></h2>
+        <p class="section-intro" data-i18n="lab.intro"></p>
+        <ul class="lab__grid">
+          <li class="lab__item">
+            <p class="lab__tag" data-i18n="lab.cursorsTag"></p>
+            <h3 class="lab__title" data-i18n="lab.cursorsTitle"></h3>
+            <p class="lab__text" data-i18n="lab.cursorsText"></p>
+            <button class="btn lab__replay js-only" type="button" data-intro-replay></button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ Đáy biển · Liên hệ ============ -->
+      <section class="contact" id="lien-he" aria-labelledby="contact-title">
+        <p class="depth-tag" data-i18n="contact.depth"></p>
+        <h2 class="contact__title" id="contact-title" data-i18n="contact.title"></h2>
+        <p class="contact__invite" data-i18n="contact.invite"></p>
+
+        <div class="contact__email">
+          <p class="contact__label" data-i18n="contact.emailLabel"></p>
+          <a class="contact__address" href="mailto:nguyenmanhthang7804@gmail.com">nguyenmanhthang7804@gmail.com</a>
+          <button class="btn btn--copy js-only" type="button" data-copy="nguyenmanhthang7804@gmail.com" data-i18n="contact.copy"></button>
+          <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
+        </div>
+
+        <ul class="contact__links">
+          <li>
+            <a href="https://www.facebook.com/nguyen.thang.897940/" target="_blank" rel="noopener"><span data-i18n="contact.facebook"></span> <span class="visually-hidden" data-i18n="contact.newTab"></span></a>
+          </li>
+        </ul>
+
+        <p class="contact__clock">
+          <span data-i18n="contact.clockLabel"></span>
+          <time class="contact__time" data-vn-clock></time>
+          <span data-i18n="contact.clockZone"></span>
+        </p>
+
+        <footer class="site-footer">
+          <p data-i18n="contact.footer"></p>
+        </footer>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

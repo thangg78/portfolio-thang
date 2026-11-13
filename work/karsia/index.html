@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="vi" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{karsia.title}} · {{meta.title}}</title>
+    <meta name="description" content="{{karsia.summary}}" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Ảnh bìa là phần tử LCP của trang: nạp ngay, song song với CSS -->
+    <link rel="preload" as="image" href="/work/karsia/cover.webp" imagesrcset="/work/karsia/cover-960.webp 960w, /work/karsia/cover.webp 1863w" imagesizes="(min-width: 1600px) 1520px, 100vw" fetchpriority="high" />
+<script>document.documentElement.classList.replace('no-js', 'js');</script>
+  </head>
+  <body class="case zone-2" data-case="karsia">
+    <a class="skip-link" href="#main" data-i18n="nav.skip"></a>
+
+    <header class="topbar">
+      <button class="fx-toggle js-only" type="button" data-fx-toggle aria-pressed="false" data-i18n="nav.fxOff"></button>
+      <button class="lang-toggle js-only" type="button" data-lang-toggle data-i18n="nav.lang" data-i18n-attr="aria-label:nav.langAria"></button>
+    </header>
+
+    <main id="main" class="case__main">
+      <nav class="case__nav">
+        <a class="case__back" href="/#tang-2" data-i18n="nav.back"></a>
+      </nav>
+
+      <header class="case__head">
+        <p class="depth-tag"><span data-i18n="karsia.depth"></span> · <span data-i18n="karsia.tier"></span></p>
+        <h1 class="case__title" data-i18n="karsia.title"></h1>
+        <p class="tier__kind" data-i18n="karsia.kind"></p>
+        <p class="case__summary" data-i18n="karsia.summary"></p>
+      </header>
+
+      <figure class="case__cover">
+        <img src="/work/karsia/cover.webp" srcset="/work/karsia/cover-960.webp 960w, /work/karsia/cover.webp 1863w" sizes="(min-width: 1600px) 1520px, 100vw" width="1863" height="1164" fetchpriority="high" decoding="async" data-cover="karsia" data-i18n-attr="alt:karsia.coverAlt" />
+      </figure>
+
+      <section class="case-sec" aria-labelledby="ka-ctx">
+        <h2 class="case-sec__label" id="ka-ctx" data-i18n="labels.context"></h2>
+        <div class="case-sec__body">
+          <p class="case-sec__lead" data-i18n="karsia.case.context"></p>
+        </div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="ka-role">
+        <h2 class="case-sec__label" id="ka-role" data-i18n="labels.role"></h2>
+        <div class="case-sec__body">
+          <p data-i18n="karsia.role"></p>
+        </div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="ka-method">
+        <h2 class="case-sec__label" id="ka-method" data-i18n="labels.method"></h2>
+        <div class="case-sec__body">
+          <ul class="steps" data-i18n-list="karsia.method"></ul>
+          <p class="case-sec__lead" data-i18n="karsia.case.triageStory"></p>
+          <figure class="triage" aria-labelledby="ka-triage-cap">
+            <figcaption class="triage__cap" id="ka-triage-cap" data-i18n="karsia.triageTitle"></figcaption>
+            <div class="triage__bar" aria-hidden="true">
+              <span class="triage__seg triage__seg--light" style="flex-grow: 29">29</span>
+              <span class="triage__seg triage__seg--mid" style="flex-grow: 9">9</span>
+              <span class="triage__seg triage__seg--heavy" style="flex-grow: 4">4</span>
+            </div>
+            <ul class="triage__legend">
+              <li class="triage__key triage__key--light"><span class="triage__n">29</span> <span data-i18n="karsia.triageLight"></span></li>
+              <li class="triage__key triage__key--mid"><span class="triage__n">9</span> <span data-i18n="karsia.triageMid"></span></li>
+              <li class="triage__key triage__key--heavy"><span class="triage__n">4</span> <span data-i18n="karsia.triageHeavy"></span></li>
+            </ul>
+            <p class="triage__note" data-i18n="karsia.highlight"></p>
+          </figure>
+          <figure class="compare">
+            <div class="compare__pair">
+              <div class="compare__item">
+                <p class="compare__label" data-i18n="labels.before"></p>
+                <img src="/work/karsia/before.webp" srcset="/work/karsia/before-960.webp 960w, /work/karsia/before.webp 1863w" sizes="(min-width: 1600px) 1520px, 100vw" width="1863" height="1100" loading="lazy" decoding="async" data-i18n-attr="alt:karsia.beforeAlt" />
+              </div>
+              <div class="compare__item">
+                <p class="compare__label" data-i18n="labels.after"></p>
+                <img src="/work/karsia/after.webp" srcset="/work/karsia/after-960.webp 960w, /work/karsia/after.webp 1863w" sizes="(min-width: 1600px) 1520px, 100vw" width="1863" height="1100" loading="lazy" decoding="async" data-i18n-attr="alt:karsia.afterAlt" />
+              </div>
+            </div>
+            <figcaption data-i18n="karsia.compareCap"></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="ka-output">
+        <h2 class="case-sec__label" id="ka-output" data-i18n="labels.output"></h2>
+        <div class="case-sec__body">
+          <h3 class="case-sub" data-i18n="karsia.case.outputsTitle"></h3>
+          <ul class="case-list" data-i18n-list="karsia.case.outputs"></ul>
+          <div class="case-gallery case-gallery--2">
+            <figure>
+              <img src="/work/karsia/01-tin-tuc.webp" srcset="/work/karsia/01-tin-tuc-960.webp 960w, /work/karsia/01-tin-tuc.webp 1863w" sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw" width="1863" height="1151" loading="lazy" decoding="async" data-i18n-attr="alt:karsia.case.g1Alt" />
+              <figcaption data-i18n="karsia.case.g1Cap"></figcaption>
+            </figure>
+            <figure>
+              <img src="/work/karsia/02-dat-phong.webp" width="1107" height="866" loading="lazy" decoding="async" data-i18n-attr="alt:karsia.case.g2Alt" />
+              <figcaption data-i18n="karsia.case.g2Cap"></figcaption>
+            </figure>
+            <figure>
+              <img src="/work/karsia/03-menu.webp" width="917" height="973" loading="lazy" decoding="async" data-i18n-attr="alt:karsia.case.g3Alt" />
+              <figcaption data-i18n="karsia.case.g3Cap"></figcaption>
+            </figure>
+            <figure>
+              <img src="/work/karsia/04-thanh-phan.webp" width="1324" height="1963" loading="lazy" decoding="async" data-i18n-attr="alt:karsia.case.g4Alt" />
+              <figcaption data-i18n="karsia.case.g4Cap"></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="ka-result">
+        <h2 class="case-sec__label" id="ka-result" data-i18n="labels.result"></h2>
+        <div class="case-sec__body">
+          <p class="case-sec__lead" data-i18n="karsia.case.result"></p>
+          <p class="case-note" data-i18n="karsia.case.resultNote"></p>
+          <p><span class="case-sub" data-i18n="labels.live"></span> <a href="https://karsiaretreatninhbinh.com" target="_blank" rel="noopener">karsiaretreatninhbinh.com</a></p>
+        </div>
+      </section>
+
+      <!--draft:karsia-->
+      <section class="case-sec" aria-labelledby="ka-reflect">
+        <h2 class="case-sec__label" id="ka-reflect" data-i18n="labels.reflection"></h2>
+        <div class="case-sec__body">
+          <p data-i18n="karsia.case.reflection"></p>
+        </div>
+      </section>
+      <!--/draft:karsia-->
+
+      <footer class="case__end">
+        <nav class="case__next">
+          <!--project:idea-->
+          <a class="case__next-link" href="/work/2idea/" data-project="idea"><span class="depth-tag"><span data-i18n="nav.next"></span> · <span data-i18n="idea.depth"></span></span> <span class="case__next-title" data-i18n="idea.title"></span></a>
+          <!--/project:idea-->
+          <a class="case__back" href="/#tang-2" data-i18n="nav.back"></a>
+        </nav>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/case.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+/*
+  Hiệu ứng phụ 3: bấm ảnh bìa → ảnh phóng thành đầu trang case study.
+  View Transitions API giữa hai trang (cross-document). Trình duyệt không hỗ trợ: điều hướng thường.
+  Giảm chuyển động: tắt hẳn. Nút "Tắt hiệu ứng": bỏ qua bằng JS (src/core/motion.ts, sự kiện pageswap/pagereveal).
+*/
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+
+/* Cùng một tên ở trang chính và trang case study → trình duyệt nội suy vị trí và kích thước ảnh */
+img[data-cover='ps'] { view-transition-name: cover-ps; }
+img[data-cover='karsia'] { view-transition-name: cover-karsia; }
+img[data-cover='idea'] { view-transition-name: cover-idea; }
+
+::view-transition-group(*) {
+  animation-duration: var(--dur-slow);
+  animation-timing-function: var(--ease);
+}
+/* Phần còn lại của trang chỉ mờ chéo, ngắn hơn để ảnh dẫn mắt */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--dur-base);
+}
