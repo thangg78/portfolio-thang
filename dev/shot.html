@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chụp nguyên trang</title>
+    <style>
+      html, body { margin: 0; background: #888; }
+      iframe { display: block; border: 0; }
+    </style>
+  </head>
+  <body>
+    <!-- Dev: /dev/shot.html?w=390&h=844 → nhúng trang ở đúng khổ w, "một màn hình" = h, iframe cao bằng nội dung -->
+    <iframe id="f"></iframe>
+    <script>
+      const q = new URLSearchParams(location.search);
+      const w = Number(q.get('w')) || 390, h = Number(q.get('h')) || 844;
+      const f = document.getElementById('f');
+      f.style.width = w + 'px';
+      f.style.height = h + 'px';
+      f.src = '/?shot=' + h + (q.get('lang') ? '&lang=' + q.get('lang') : '');
+      f.onload = () => {
+        const fit = () => { f.style.height = f.contentDocument.documentElement.scrollHeight + 'px'; };
+        fit();
+        setTimeout(fit, 800);
+      };
+    </script>
+  </body>
+</html>

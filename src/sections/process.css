@@ -1,0 +1,53 @@
+/* Cách tôi làm việc: danh sách bậc thang đi xuống, không phải ba thẻ giống nhau. */
+.process { padding-block: var(--space-24); }
+.process > * { max-width: 1600px; margin-inline: auto; }
+
+.process__list {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-12);
+  display: grid;
+  gap: 0;
+}
+.process__step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2);
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--rule);
+}
+.process__name {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  padding-top: var(--display-clip-pad);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+.process__idx {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  color: var(--fg-muted);
+}
+.process__num {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 300;
+  line-height: var(--leading-display);
+  color: var(--light);
+  margin: 0;
+}
+.process__text { margin: 0; max-width: 42ch; color: var(--fg-muted); }
+
+@media (min-width: 1024px) {
+  .process__step {
+    grid-template-columns: 15rem 12rem minmax(0, 42ch);
+    align-items: baseline;
+    column-gap: var(--space-8);
+  }
+  /* Mỗi bậc thụt nguyên khối thêm một nấc: đi xuống như bậc lặn, cột bên trong vẫn thẳng hàng */
+  .process__step:nth-child(2) { margin-left: var(--space-16); }
+  .process__step:nth-child(3) { margin-left: calc(var(--space-16) * 2); }
+  .process__step:nth-child(4) { margin-left: calc(var(--space-16) * 3); }
+}

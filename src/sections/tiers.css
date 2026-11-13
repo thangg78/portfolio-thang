@@ -1,0 +1,197 @@
+/* Ba tầng dự án. Mỗi tầng ≥ một màn hình, ba bố cục khác nhau. */
+.tier {
+  min-height: var(--screen-h);
+  padding-block: var(--space-24);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-8);
+  align-content: center;
+}
+.tier > * { min-width: 0; }
+
+.tier img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
+}
+
+.tier__kind {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+  margin: 0;
+}
+.tier__title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  padding-top: var(--display-clip-pad);
+  margin: var(--space-2) 0 0;
+}
+.tier__title--huge { font-size: var(--text-2xl); font-weight: 700; }
+.tier__summary {
+  font-size: var(--text-lg);
+  line-height: 1.45;
+  max-width: 40ch;
+  margin: var(--space-4) 0 0;
+}
+
+.disclaimer {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  border-left: 2px solid currentColor;
+  padding-left: var(--space-3);
+  margin: var(--space-6) 0 0;
+  max-width: 52ch;
+}
+
+/* Bảng vai trò / cách làm / sản phẩm / kết quả */
+.facts { margin: var(--space-8) 0 0; font-size: var(--text-sm); }
+.facts dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+.facts dd { margin: var(--space-2) 0 var(--space-4); max-width: 60ch; }
+.facts__result { font-weight: 500; }
+/* Liên kết đứng riêng trong ô (vd. web đang chạy): vùng chạm ≥ 44 px */
+.facts dd > a:only-child { display: inline-flex; align-items: center; min-height: var(--tap); }
+
+/* Liên kết chữ tới case study (ngoài ảnh bìa), không có mũi tên theo đặc tả 5.3 */
+.case-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  margin-top: var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+.steps li { position: relative; padding-left: 2.25em; counter-increment: step; }
+.steps li + li { margin-top: var(--space-2); }
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+}
+
+/* ---------- Tầng 1 · 10 m: ảnh lớn bên trái, chữ bên phải ---------- */
+.tier--1 .tier__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+/* ---------- Tầng 2 · 200 m: chữ trái, ảnh phải, so sánh trải ngang ---------- */
+.triage { margin: var(--space-8) 0 0; }
+.triage__cap {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  margin: 0 0 var(--space-3);
+}
+.triage__bar { display: flex; gap: 3px; height: 2.75rem; }
+.triage__seg {
+  display: flex;
+  align-items: center;
+  padding-left: var(--space-2);
+  min-width: 2rem;
+  color: var(--deep);
+  font: 600 var(--text-sm)/1 var(--font-mono);
+}
+.triage__seg--light, .triage__key--light::before { background: var(--light); }
+.triage__seg--mid, .triage__key--mid::before { background: var(--shallow); }
+.triage__seg--heavy, .triage__key--heavy::before { background: var(--coral); }
+.triage__seg:first-child { border-radius: 4px 0 0 4px; }
+.triage__seg:last-child { border-radius: 0 4px 4px 0; }
+.triage__legend {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-3) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  font-size: var(--text-sm);
+}
+.triage__key { display: flex; align-items: center; gap: var(--space-2); }
+.triage__key::before { content: ''; width: 0.75rem; height: 0.75rem; border-radius: 2px; }
+.triage__n { font-family: var(--font-mono); font-weight: 600; }
+.triage__note { margin: var(--space-4) 0 0; max-width: 46ch; }
+
+.compare__pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+}
+.compare__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  margin: 0 0 var(--space-2);
+}
+
+/* ---------- Tầng 3 · 1.000 m: tiêu đề cực lớn, ba cột chữ, khung cuộn dọc ---------- */
+.tier--3 .tier__head { display: grid; gap: var(--space-2); }
+.tier__summary--lead { max-width: 52ch; }
+.facts--cols { display: grid; gap: 0 var(--space-8); }
+
+.tier__shots { display: grid; gap: var(--space-8); align-items: start; }
+.strip__frame {
+  max-width: 960px;
+  height: min(calc(var(--screen-h) * 0.72), 760px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+.strip__frame img { border-radius: 0; }
+.tier__mobile { max-width: 1330px; }
+
+@media (min-width: 768px) {
+  .compare__pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts--cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .tier {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-6);
+    row-gap: var(--space-12);
+  }
+  .tier > * { grid-column: 1 / -1; }
+
+  /* Tầng 1: cột trái (nhãn → ảnh bìa → hai ảnh nhỏ), cột phải là chữ. Hàng cuối 1fr nhận phần cao dư của cột chữ. */
+  .tier--1 { grid-template-rows: auto auto auto 1fr; row-gap: var(--space-6); }
+  .tier--1 .tier__head { grid-column: 1 / span 7; grid-row: 1; }
+  .tier--1 .tier__cover { grid-column: 1 / span 7; grid-row: 2; max-width: 1440px; }
+  .tier--1 .tier__gallery { grid-column: 1 / span 7; grid-row: 3; }
+  .tier--1 .tier__body { grid-column: 8 / -1; grid-row: 1 / -1; align-self: start; }
+
+  /* Tầng 2: chữ trái; phải là ảnh bìa rồi so sánh trước/sau xếp liền nhau. */
+  .tier--2 { grid-template-rows: auto auto 1fr; row-gap: var(--space-8); }
+  .tier--2 .tier__body { grid-column: 1 / span 5; grid-row: 1 / -1; }
+  .tier--2 .tier__cover { grid-column: 7 / -1; grid-row: 1; align-self: start; }
+  .tier--2 .compare { grid-column: 7 / -1; grid-row: 2; align-self: start; }
+
+  /* Tầng 3 */
+  .tier--3 .tier__head { grid-column: 1 / span 8; }
+  .tier--3 .tier__summary--lead { grid-column: 1 / span 6; margin: 0; }
+  .tier--3 .tier__cover { grid-column: 1 / -1; }
+  .facts--cols { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; }
+  .tier--3 .tier__shots { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+}

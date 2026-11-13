@@ -1,0 +1,38 @@
+/* Hiệu ứng phụ 1 (src/effects/name-reveal.ts) */
+
+/* Script ở <head> thêm .nr-pending khi có JS và cho phép chuyển động, để tên không nháy hiện rồi mới ẩn.
+   Lưới an toàn: nếu JS lỗi, sau 2,5 s tên tự hiện. */
+.nr-pending .hero__name { visibility: hidden; animation: nr-failsafe 0s linear 2.5s forwards; }
+@keyframes nr-failsafe { to { visibility: visible; } }
+
+.hero__name.nr-ready .hero__line { padding-top: 0; }
+
+/* Ô ký tự: rộng cố định (--w), là mặt nạ "mặt nước". Đệm trên/dưới để không cắt dấu và nét xuống, bù lại bằng lề âm. */
+.nr-char {
+  display: inline-block;
+  width: var(--w, auto);
+  overflow: hidden;
+  padding-block: var(--display-clip-pad) 0.08em;
+  margin-block: calc(var(--display-clip-pad) * -1) -0.08em;
+  text-align: center;
+  vertical-align: top;
+  white-space: pre;
+}
+.nr-glyph {
+  display: inline-block;
+  font-weight: var(--wght, var(--nr-base, 700));
+  transform: translateY(115%);
+  transition:
+    transform 640ms var(--ease) calc(var(--i) * var(--nr-stagger, 35ms)),
+    font-weight var(--dur-fast) var(--ease);
+}
+.hero__name.nr-shown .nr-glyph { transform: none; }
+/* Intro gõ tên: từng ký tự trồi lên ngay khi được "gõ", không chờ độ trễ so le */
+.nr-glyph.nr-up { transform: none; transition-delay: 0ms; transition-duration: 240ms; }
+.hero__name.nr-instant .nr-glyph { transition: none; }
+/* Khi đo bề rộng ô: dùng độ đậm lớn nhất, bỏ mọi chuyển tiếp */
+.hero__name.nr-measuring .nr-glyph { font-weight: 800; transition: none; }
+.hero__name.nr-measuring .nr-char { width: auto; }
+
+/* Tắt hiệu ứng / giảm chuyển động: hiện ngay */
+.fx-off .nr-glyph { transform: none; transition: none; }

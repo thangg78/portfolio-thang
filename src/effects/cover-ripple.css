@@ -1,0 +1,38 @@
+/* Ảnh bìa là liên kết tới case study (hiệu ứng 2 và 3) */
+.cover-link {
+  position: relative;
+  display: block;
+  border-radius: 6px;
+}
+.cover-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+
+/* Canvas gợn sóng phủ đúng lên ảnh đang rê (src/effects/cover-ripple.ts) */
+.cover-ripple {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+/* Con trỏ thành nhãn "Xem" — chỉ khi hiệu ứng đang bật */
+.has-cover-ripple .cover-link { cursor: none; }
+.cover-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 25;
+  pointer-events: none;
+  translate: -50% -50%;
+  padding: var(--space-2) var(--space-4);
+  border-radius: 999px;
+  background: var(--deep);
+  color: var(--foam);
+  font: 600 var(--text-sm)/1 var(--font-mono);
+  letter-spacing: 0.04em;
+  opacity: 0;
+  scale: 0.8;
+  transition: opacity var(--dur-fast) var(--ease), scale var(--dur-fast) var(--ease);
+}
+.cover-cursor.is-on { opacity: 1; scale: 1; }
