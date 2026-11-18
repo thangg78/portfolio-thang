@@ -128,3 +128,14 @@ Quy tắc: sau mỗi bước phải dừng, báo cáo, chờ người dùng đ�
 - Dev: `?y=0.42` cuộn tức thì tới 42% trang; `(await import('/dev/contrast-audit.js')).run()` đo tương phản mọi vị trí cuộn.
   Edge headless KHÔNG chụp được khung nhìn đã cuộn (ra trang trống) → chụp vị trí cuộn bằng pane ở 1280 hoặc 390.
 - `public/work/` đang chứa PORTFOLIO_SPEC.md, portfolio-images.zip, contact.png — sẽ bị xuất bản theo bản build. Cần hỏi người dùng trước khi dời.
+
+## Sửa sau bản đầu (2026-11-18, phiên claude.ai)
+
+- Công khai cả 3 dự án: `content/projects.json` KARSIA và 2IDEA `published: true` (theo yêu cầu của Thắng).
+- Phân cấp chữ: tên dự án cùng cỡ ở cả 3 tầng (clamp 36 → 64 px, 700), lớn hơn tiêu đề phần chung
+  (Cách tôi làm việc, Phòng thử nghiệm: hạ xuống --text-xl). Nội dung bảng thông tin lên --text-base; dòng Kết quả
+  dùng chữ tiêu đề --text-lg 600. Case study: tiêu đề phần (Bối cảnh, Vai trò…) đổi từ nhãn mono 15 px sang
+  chữ tiêu đề --text-lg 600, cột trái 16rem; đoạn mở đầu nhỏ lại một bậc; phần Kết quả in đậm chữ tiêu đề.
+- Email ở Liên hệ chỉ xuống dòng sau @; ảnh bìa tầng 1 tải ngay; trang case study chừa chỗ cho nút góc phải.
+- Kiểm tra: bản xem trước tĩnh (không JS) ở 360, 390, 768, 1024, 1440, 1920 px trên 4 trang: không tràn ngang, mọi ảnh tải được.
+  Chưa chạy `npm run build` (môi trường phiên này không cài được gói npm): cần build lại trên máy rồi cập nhật artifact.

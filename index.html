@@ -69,7 +69,7 @@
 
         <figure class="tier__cover">
           <a class="cover-link" href="/work/playstation-ui/" data-cover-link>
-            <img src="/work/playstation-ui/cover.webp" srcset="/work/playstation-ui/cover-960.webp 960w, /work/playstation-ui/cover.webp 1920w" sizes="(min-width: 1024px) 60vw, 100vw" width="1920" height="1080" loading="lazy" decoding="async" data-cover="ps" data-i18n-attr="alt:ps.coverAlt" />
+            <img src="/work/playstation-ui/cover.webp" srcset="/work/playstation-ui/cover-960.webp 960w, /work/playstation-ui/cover.webp 1920w" sizes="(min-width: 1024px) 60vw, 100vw" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="async" data-cover="ps" data-i18n-attr="alt:ps.coverAlt" />
             <span class="visually-hidden" data-i18n="nav.viewCase"></span>
           </a>
         </figure>
@@ -272,7 +272,7 @@
 
         <div class="contact__email">
           <p class="contact__label" data-i18n="contact.emailLabel"></p>
-          <a class="contact__address" href="mailto:nguyenmanhthang7804@gmail.com">nguyenmanhthang7804@gmail.com</a>
+          <a class="contact__address" href="mailto:nguyenmanhthang7804@gmail.com">nguyenmanhthang7804@<wbr>gmail.com</a>
           <button class="btn btn--copy js-only" type="button" data-copy="nguyenmanhthang7804@gmail.com" data-i18n="contact.copy"></button>
           <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
         </div>

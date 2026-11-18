@@ -1,6 +1,6 @@
 {
   "_note": "published: false = ẩn dự án khỏi bản build: gỡ khỏi trang chính VÀ không build trang /work/<slug>/ (vẫn hiện khi chạy dev, có viền và nhãn 'chưa công khai'). KARSIA và 2IDEA là dự án khách hàng: chỉ đổi thành true khi khách đã đồng ý cho đăng. reflectionConfirmed: false = mục 'Điều sẽ làm khác đi' là nháp do Claude suy ra từ đặc tả, bị gỡ khỏi bản build cho tới khi Thắng xác nhận (đổi thành true) hoặc viết lại trong content/*.json.",
   "ps": { "published": true, "slug": "playstation-ui", "reflectionConfirmed": false },
-  "karsia": { "published": false, "slug": "karsia", "reflectionConfirmed": false },
-  "idea": { "published": false, "slug": "2idea", "reflectionConfirmed": false }
+  "karsia": { "published": true, "slug": "karsia", "reflectionConfirmed": false },
+  "idea": { "published": true, "slug": "2idea", "reflectionConfirmed": false }
 }
