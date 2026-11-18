@@ -6,6 +6,9 @@ import projects from './content/projects.json' with { type: 'json' };
 
 type Dict = Record<string, unknown>;
 
+/** Đường dẫn gốc khi đăng. GitHub Pages: BASE_PATH=/portfolio-thang/ (đặt trong workflow). Chạy dev: '/'. */
+const BASE = (process.env.BASE_PATH || '/').replace(/\/?$/, '/');
+
 const esc = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -86,10 +89,12 @@ function i18nHtml(): Plugin {
  * URL font trong CSS là đường dẫn tuyệt đối /assets/... nên vẫn đúng ở mọi trang.
  */
 function inlineCss(): Plugin {
+  let base = '/';
   return {
     name: 'inline-css',
     apply: 'build',
     enforce: 'post',
+    configResolved(c) { base = c.base; },
     generateBundle(_opts, bundle) {
       const css = Object.values(bundle).find((f) => f.type === 'asset' && f.fileName.endsWith('.css'));
       if (!css || css.type !== 'asset') return;
@@ -97,7 +102,7 @@ function inlineCss(): Plugin {
       for (const f of Object.values(bundle)) {
         if (f.type !== 'asset' || !f.fileName.endsWith('.html')) continue;
         f.source = String(f.source).replace(
-          new RegExp(`<link rel="stylesheet"[^>]*href="/${css.fileName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`),
+          new RegExp(`<link rel="stylesheet"[^>]*href="${(base + css.fileName).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`),
           () => `<style>${code}</style>`,
         );
       }
@@ -128,6 +133,32 @@ function pruneUnpublished(): Plugin {
   };
 }
 
+/**
+ * Khi trang nằm trong thư mục con (GitHub Pages /portfolio-thang/): thêm gốc vào mọi đường dẫn bắt đầu bằng "/"
+ * trong HTML mà Vite không tự sửa: liên kết <a href="/work/…">, "/#tang-1", favicon, ảnh trong public/ (src, srcset).
+ * Không đụng tới "//…" và đường dẫn đã có gốc.
+ */
+function basePaths(): Plugin {
+  let base = '/';
+  return {
+    name: 'base-paths',
+    apply: 'build',
+    configResolved(c) { base = c.base; },
+    transformIndexHtml: {
+      order: 'post',
+      handler(html) {
+        if (base === '/') return html;
+        const fix = (u: string) => (u.startsWith('/') && !u.startsWith('//') && !u.startsWith(base) ? base + u.slice(1) : u);
+        html = html.replace(/\b(href|src)="([^"]*)"/g, (_m, a: string, u: string) => `${a}="${fix(u)}"`);
+        html = html.replace(/\bsrcset="([^"]*)"/g, (_m, v: string) =>
+          `srcset="${v.split(',').map((part) => part.trim().replace(/^(\S+)/, (u) => fix(u))).join(', ')}"`,
+        );
+        return html;
+      },
+    },
+  };
+}
+
 // Trang case study: chỉ build trang của dự án đã được phép công khai
 const caseInputs = Object.fromEntries(
   Object.entries(projects as Record<string, { published?: boolean; slug?: string }>)
@@ -136,7 +167,8 @@ const caseInputs = Object.fromEntries(
 );
 
 export default defineConfig({
-  plugins: [i18nHtml(), inlineCss(), pruneUnpublished()],
+  base: BASE,
+  plugins: [i18nHtml(), basePaths(), inlineCss(), pruneUnpublished()],
   build: {
     // Một file CSS duy nhất: tránh thêm yêu cầu CSS chặn hiển thị cho phần dùng chung giữa các trang
     cssCodeSplit: false,
